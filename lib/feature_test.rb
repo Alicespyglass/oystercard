@@ -13,3 +13,14 @@ card.balance
 card.deduct(fare)
 
 # later - calculate fare
+
+# In order to get through the barriers.
+# As a customer
+# I need to touch in and out.
+card.touch_in
+card.touch_out
+
+#check state of card in journey
+card.in_journey?
+
+#
