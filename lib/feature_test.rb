@@ -3,11 +3,11 @@ require './lib/oystercard'
 
 card = Oystercard.new
 card.top_up(20)
-card.touch_in("Leyton")
-card.in_journey?
-card.touch_out("Liverpool Street")
-card.journey_log
+card.touch_out("Leyton")
 card.balance
+
+card.in_journey?
+card.touch_in("Liverpool Street")
 
 
 

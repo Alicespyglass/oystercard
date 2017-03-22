@@ -44,19 +44,25 @@ describe Oystercard do
 
     before do
       oystercard.top_up(20)
-      oystercard.touch_in(station)
     end
 
-      it { is_expected.to respond_to(:touch_out).with(1).argument }
+    it { is_expected.to respond_to(:touch_out).with(1).argument }
 
     it 'changes card journey state to journey ended when touching out' do
+      oystercard.touch_in(station)
       oystercard.touch_out(exit_station)
       expect(oystercard.in_journey?).to eq false
     end
 
     it 'deducts correct fare amount on card touch out' do
+      oystercard.touch_in(station)
       expect {oystercard.touch_out(exit_station)}.to change{oystercard.balance}.by (-Oystercard::MINIMUM_TRAVEL_BALANCE)
     end
+
+    it 'deducts penalty fare if touch out without touch in station' do
+      expect { oystercard.touch_out(exit_station)}.to change{ oystercard.balance }.by (-Journey::PENALTY_FARE)
+    end
+
   end
 
   describe '#journey_log' do
@@ -66,8 +72,6 @@ describe Oystercard do
       oystercard.touch_out(exit_station)
       expect(oystercard.journey_log).to eq [ {entry_station: station, exit_station: exit_station} ]
     end
-
-
   end
 
 

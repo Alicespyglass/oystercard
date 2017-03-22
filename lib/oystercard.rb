@@ -5,6 +5,7 @@ class Oystercard
 
   MAXIMUM_BALANCE = 90
   MINIMUM_TRAVEL_BALANCE = 1
+  PENALTY_FARE = 6
 
   attr_reader :balance, :fare, :entry_station, :journey_log, :journey, :min_balance
 
@@ -13,6 +14,7 @@ class Oystercard
     @fare = fare
     @entry_station = nil
     @journey_log = []
+    @journey = Journey.new
   end
 
   def top_up(amount)
@@ -31,9 +33,14 @@ class Oystercard
   end
 
   def touch_out(exit_station)
+    # if journey.end() = nil, then deduct penalty fare
+    if journey.entry_station == nil
+      deduct(Journey::PENALTY_FARE)
+    else
     journey.end(exit_station)
     @journey_log << { entry_station: journey.entry_station, exit_station: journey.exit_station }
     deduct(journey.fare)
+    end
   end
 
   private
