@@ -3,7 +3,8 @@ require './lib/journey'
 trip = Journey.new
 trip.start("Leyton")
 trip.entry_station
-
+trip.end("Liverpool Street")
+trip.entry_station
 
 
 

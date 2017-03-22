@@ -18,5 +18,12 @@ describe '#start' do
   end
 end
 
+describe '#end' do
+  it 'stores an exit_station' do
+    journey.end(exit_station)
+    expect(journey.exit_station).to eq exit_station
+  end
+end
+
 
 end
