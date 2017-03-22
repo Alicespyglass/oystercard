@@ -24,8 +24,12 @@ class Oystercard
 
   def touch_in(station)
     fail "Insufficient funds. £1 minimum needed to travel." if @balance < MINIMUM_TRAVEL_BALANCE
+    if in_journey?
+      deduct(Journey::PENALTY_FARE)
+    else
     @journey = Journey.new
     journey.start(station)
+    end 
   end
 
   def in_journey?
@@ -34,7 +38,7 @@ class Oystercard
 
   def touch_out(exit_station)
     # if journey.end() = nil, then deduct penalty fare
-    if journey.entry_station == nil
+    if !in_journey?
       deduct(Journey::PENALTY_FARE)
     else
     journey.end(exit_station)
