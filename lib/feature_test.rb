@@ -1,10 +1,13 @@
 require './lib/journey'
+require './lib/oystercard'
 
-trip = Journey.new
-trip.start("Leyton")
-trip.entry_station
-trip.end("Liverpool Street")
-trip.entry_station
+card = Oystercard.new
+card.top_up(20)
+card.touch_in("Leyton")
+card.in_journey?
+card.touch_out("Liverpool Street")
+card.journey_log
+card.balance
 
 
 

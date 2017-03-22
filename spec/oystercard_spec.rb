@@ -34,11 +34,6 @@ describe Oystercard do
       expect{ oystercard.touch_in(station) }.to raise_error "Insufficient funds. £1 minimum needed to travel."
     end
 
-    it 'remembers entry station after touch in' do
-      oystercard.top_up(20)
-      oystercard.touch_in(station)
-      expect(oystercard.entry_station).to eq station
-    end
   end
 
   describe '#in_journey?' do
