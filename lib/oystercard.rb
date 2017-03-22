@@ -26,7 +26,7 @@ class Oystercard
     !!@entry_station
   end
 
-  def touch_out
+  def touch_out(exit_station)
     @journey_log << @entry_station
     @entry_station = nil
     deduct(fare)
