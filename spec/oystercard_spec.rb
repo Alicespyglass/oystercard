@@ -22,14 +22,6 @@ describe Oystercard do
     end
   end
 
-  # describe '#deduct' do
-  #
-  #   it 'deducts fare from balance' do
-  #     oystercard.top_up(20)
-  #     expect{ oystercard.deduct 5 }.to change{ oystercard.balance }.by -5
-  #   end
-  # end
-
   describe '#touch_in' do
     it 'changes card journey state to in transit when touching in' do
       oystercard.top_up(20)
@@ -44,7 +36,7 @@ describe Oystercard do
     it 'remembers entry station after touch in' do
       oystercard.top_up(20)
       oystercard.touch_in(station)
-      expect(oystercard.history).to eq [station]
+      expect(oystercard.entry_station).to eq station
     end
   end
 
@@ -54,7 +46,6 @@ describe Oystercard do
 
   describe '#touch_out' do
     it 'changes card journey state to journey ended when touching out' do
-
       oystercard.top_up(20)
       oystercard.touch_in(station)
       oystercard.touch_out
@@ -68,6 +59,17 @@ describe Oystercard do
     end
   end
 
+  describe '#journey_log' do
+    it 'shows journey log' do
+      # log entry station
+      oystercard.top_up(20)
+      oystercard.touch_in(station)
+      oystercard.touch_out
+      expect(oystercard.journey_log).to include station
+    end
+
+
+  end
 
 
 end
