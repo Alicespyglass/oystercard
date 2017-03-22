@@ -1,19 +1,12 @@
-require './lib/oystercard'
+require './lib/journey'
 
-card = Oystercard.new
-card.top_up(20)
-card.touch_in("Bank")
-card.touch_out("exit station")
-card.journey_log
+trip = Journey.new
+trip.start("Leyton")
+trip.entry_station
 
 
 
 
+# I need a penalty charge deducted if I fail to touch in or out
 
-
-card.journey_log
-#I want to see to all my previous trips
-# need an exit station
-# need to create exit station as a key
-# need to create entry station as a key in the journey log hash
-# touch out needs to take exit station as an argument
+Create journey class
