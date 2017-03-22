@@ -25,5 +25,17 @@ describe '#end' do
   end
 end
 
+describe '#fare' do
+  it 'charges the minimum balance for a journey' do
+    journey.start(entry_station)
+    journey.end(exit_station)
+    expect(journey.fare).to eq Journey::MINIMUM_TRAVEL_BALANCE
+ end
+ it 'charges a penalty fare if fail to touch in' do 
+   journey.end(exit_station)
+   expect(journey.fare).to eq Journey::PENALTY_FARE
+ end
+end
+
 
 end
