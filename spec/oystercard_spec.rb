@@ -65,11 +65,10 @@ describe Oystercard do
 
   describe '#journey_log' do
     it 'shows journey log' do
-      # log entry station
       oystercard.top_up(20)
       oystercard.touch_in(station)
       oystercard.touch_out(exit_station)
-      expect(oystercard.journey_log).to include station
+      expect(oystercard.journey_log).to eq [ {entry_station: station, exit_station: exit_station} ]
     end
 
 

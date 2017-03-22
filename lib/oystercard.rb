@@ -10,6 +10,7 @@ class Oystercard
     @fare = fare
     @entry_station = nil
     @journey_log = []
+    # @exit_station = nil
   end
 
   def top_up(amount)
@@ -27,7 +28,8 @@ class Oystercard
   end
 
   def touch_out(exit_station)
-    @journey_log << @entry_station
+    # @exit_station = exit_station
+    @journey_log << { entry_station: @entry_station, exit_station: exit_station }
     @entry_station = nil
     deduct(fare)
   end
