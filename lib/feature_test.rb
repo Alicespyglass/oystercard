@@ -1,5 +1,12 @@
 require './lib/journey'
 require './lib/oystercard'
+require './lib/journeylog'
+
+journeylog = Journeylog.new
+journeylog
+
+
+
 
 card = Oystercard.new
 card.top_up(20)

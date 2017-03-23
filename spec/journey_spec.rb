@@ -47,7 +47,7 @@ it { is_expected.to respond_to(:fare) }
       journey.start(entry_station)
       journey.end(exit_station)
       journey.finish
-      expect(journey.completed?).to eq false
+      expect(journey.fare).to eq Journey::PENALTY_FARE
     end
 
   end

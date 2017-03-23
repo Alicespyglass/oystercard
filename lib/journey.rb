@@ -34,9 +34,12 @@ def finish
 end
 
 
+
+private
+attr_writer :entry_station, :exit_station
+
 def completed?
   entry_station != nil && exit_station != nil
 end
-
 
 end

@@ -6,8 +6,7 @@ class Oystercard
   MAXIMUM_BALANCE = 90
   MINIMUM_TRAVEL_BALANCE = 1
 
-
-  attr_reader :balance, :fare, :entry_station, :journey_log, :journey, :min_balance
+  attr_reader :balance, :fare, :entry_station, :journey_log, :journey
 
   def initialize
     @balance = 0
