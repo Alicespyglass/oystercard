@@ -5,11 +5,11 @@ class Oystercard
 
   MAXIMUM_BALANCE = 90
   MINIMUM_TRAVEL_BALANCE = 1
-  PENALTY_FARE = 6
+
 
   attr_reader :balance, :fare, :entry_station, :journey_log, :journey, :min_balance
 
-  def initialize(fare= MINIMUM_TRAVEL_BALANCE)
+  def initialize
     @balance = 0
     @fare = fare
     @entry_station = nil
@@ -24,27 +24,16 @@ class Oystercard
 
   def touch_in(station)
     fail "Insufficient funds. £1 minimum needed to travel." if @balance < MINIMUM_TRAVEL_BALANCE
-    if in_journey?
-      deduct(Journey::PENALTY_FARE)
-    else
     @journey = Journey.new
     journey.start(station)
-    end 
   end
 
-  def in_journey?
-    journey.entry_station != nil && journey.exit_station == nil
-  end
 
   def touch_out(exit_station)
-    # if journey.end() = nil, then deduct penalty fare
-    if !in_journey?
-      deduct(Journey::PENALTY_FARE)
-    else
     journey.end(exit_station)
     @journey_log << { entry_station: journey.entry_station, exit_station: journey.exit_station }
     deduct(journey.fare)
-    end
+    journey.finish
   end
 
   private

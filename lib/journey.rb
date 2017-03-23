@@ -1,7 +1,7 @@
 class Journey
 
 attr_reader :entry_station, :exit_station
-MINIMUM_TRAVEL_BALANCE = 1
+TRAVEL_FARE = 1
 PENALTY_FARE = 6
 
 
@@ -21,11 +21,21 @@ end
 
 
 def fare
-  if @entry_station == nil
-    PENALTY_FARE
+  if completed?
+    TRAVEL_FARE
   else
-    MINIMUM_TRAVEL_BALANCE
+    PENALTY_FARE
   end
+end
+
+def finish
+  @entry_station = nil
+  @exit_station = nil
+end
+
+
+def completed?
+  entry_station != nil && exit_station != nil
 end
 
 
