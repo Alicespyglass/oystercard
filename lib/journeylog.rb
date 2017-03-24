@@ -15,9 +15,12 @@ require_relative 'journey'
   end
 
   def start_station(entry_station)
-    @current_journey = @journey_class.new
     @current_journey.start(entry_station)
-    @entry_station = entry_station
+    # @entry_station = entry_station
+  end
+
+  def create_journey
+    @current_journey = @journey_class.new
   end
 
   private
