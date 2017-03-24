@@ -24,6 +24,7 @@ require_relative 'journey'
 
   def finish_station(exit_station)
     @current_journey.end(exit_station)
+    @journey_history << {entry_station: current_journey.entry_station, exit_station: current_journey.exit_station} 
   end
 
   private

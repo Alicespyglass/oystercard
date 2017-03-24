@@ -51,6 +51,13 @@ describe Journeylog do
       journeylog.finish_station(exit_station)
     end
 
+    it 'stores a finished journey' do
+      journeylog.create_journey
+      journeylog.start_station(entry_station)
+      journeylog.finish_station(exit_station)
+      expect(journeylog.journey_history).to eq [ {entry_station: entry_station, exit_station: exit_station}]
+    end
+
   end
 
 
