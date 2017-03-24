@@ -3,10 +3,11 @@ require './lib/oystercard'
 require './lib/journeylog'
 
 journeylog = Journeylog.new
+journeylog.create_journey
 journeylog.start_station('entry_station')
 journeylog
-
-
+journeylog.finish_station('finish_station')
+journeylog
 
 
 card = Oystercard.new

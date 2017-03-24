@@ -7,7 +7,7 @@
 class Journeylog
 require_relative 'journey'
 
-  attr_reader :journey_class, :entry_station, :journey_history, :current_journey
+  attr_reader :journey_class, :journey_history, :current_journey
 
   def initialize(journey_class: Journey)
     @journey_class = journey_class
@@ -16,11 +16,14 @@ require_relative 'journey'
 
   def start_station(entry_station)
     @current_journey.start(entry_station)
-    # @entry_station = entry_station
   end
 
   def create_journey
     @current_journey = @journey_class.new
+  end
+
+  def finish_station(exit_station)
+    @current_journey.end(exit_station)
   end
 
   private

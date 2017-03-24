@@ -12,7 +12,7 @@ describe Journeylog do
   let(:exit_station) { double :station}
 
   let(:journey_class) { double :journey_class, new: journey}
-  let(:current_journey) { double :current_journey, :start => entry_station}
+  let(:current_journey) { double :current_journey, :start => entry_station , :end => exit_station}
 
   subject(:journeylog) { described_class.new }
 
@@ -41,6 +41,16 @@ describe Journeylog do
   #     journeylog.start_station(entry_station)
   #     expect(journeylog.entry_station).to eq entry_station
   #   end
+  end
+
+  describe '#finish_station' do
+    it 'ends a journey' do
+      journeylog.create_journey
+      journeylog.start_station(entry_station)
+      expect(journeylog.current_journey).to receive(:end).with(exit_station)
+      journeylog.finish_station(exit_station)
+    end
+
   end
 
 
