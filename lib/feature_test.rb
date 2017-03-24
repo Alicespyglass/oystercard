@@ -3,6 +3,7 @@ require './lib/oystercard'
 require './lib/journeylog'
 
 journeylog = Journeylog.new
+journeylog.start_station('entry_station')
 journeylog
 
 
